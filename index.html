@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для Сони ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: #fff;
+            font-family: -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Экран пароля */
+        #lock {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0b0b0b;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 320px;
+        }
+
+        #lock h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ff4d6d;
+        }
+
+        #date-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 22px;
+            text-align: center;
+            border: 2px solid #333;
+            background: #111;
+            color: #fff;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        #btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            background: #ff4d6d;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        #err {
+            color: #ff4d4d;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        /* Главный экран */
+        #content {
+            display: none;
+            padding: 30px 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #ff4d6d;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #f0f0f0;
+        }
+
+        .joke {
+            background: rgba(255, 77, 109, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #ff4d6d;
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 15px;
+            color: #ff8fa3;
+            margin-top: 30px;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+
+        /* Анимация летящих сердечек */
+        .heart-fly {
+            position: fixed;
+            bottom: -50px;
+            font-size: 24px;
+            animation: fly 4s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-105vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Экран авторизации -->
+    <div id="lock">
+        <div class="box">
+            <h2>Введите дату начала ваших отношений:</h2>
+            <input type="text" id="date-input" placeholder="ДД.ММ.ГГ" maxlength="8" inputmode="numeric">
+            <button id="btn" onclick="check()">Открыть ❤️</button>
+            <div id="err">Неправильная дата, попробуй еще раз 🥺</div>
+        </div>
+    </div>
+
+    <!-- Главный контент -->
+    <div id="content">
+        <h1>Соооняяя ❤️❤️❤️</h1>
+        
+        <p>С 16-летием тебя, моя любимаяяя 🥹❤️🎂💋 Я хочу пожелать тебе самого большого счастья, крепкого здоровья, побольше улыбок и чтобы у тебя всё в жизни получалось. Пусть рядом всегда будут люди, которые тебя любят, ценят и делают тебя счастливой. Никогда не переставай улыбаться, потому что твоя улыбка — это отдельный вид искусства ❤️</p>
+        
+        <p>Я очень рад, что ты есть в моей жизни. Ты для меня особенная, и я хочу, чтобы ты всегда чувствовала себя любимой. Желаю тебе исполнения всех твоих мечт, даже самых безумных, и чтобы каждый твой день был наполнен радостью и любовью 🫶🏻❤️</p>
+        
+        <div class="joke">
+            <p style="margin-bottom: 0;">Ну и всё, теперь тебе 16, официально ещё на один год ближе к пенсии 😂❤️ Так что береги спину, пей водичку и не забывай принимать таблетки от старости 😭😭</p>
+        </div>
+        
+        <p>А если серьёзно, я очень сильно тебя люблю и хочу, чтобы ты была самой счастливой девочкой на свете. С днём рождения, моя принцесса 👑❤️💋🎉</p>
+        
+        <div class="footer-text">
+            Я очень надеюсь, что этот год пройдет в таких же хороших, крепких и счастливых отношениях!
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('date-input');
+        
+        // Автоматическая расстановка точек на телефоне
+        input.addEventListener('input', (e) => {
+            let val = e.target.value.replace(/\D/g, '');
+            if (val.length > 2 && val.length <= 4) {
+                val = val.slice(0, 2) + '.' + val.slice(2);
+            } else if (val.length > 4) {
+                val = val.slice(0, 2) + '.' + val.slice(2, 4) + '.' + val.slice(4, 6);
+            }
+            e.target.value = val;
+            document.getElementById('err').style.display = 'none';
+        });
+
+        // Проверка даты
+        function check() {
+            if (input.value === "31.12.25") {
+                document.getElementById('lock').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                setInterval(createHeart, 300); // Запуск сердечек
+            } else {
+                document.getElementById('err').style.display = 'block';
+            }
+        }
+
+        // Функция создания летающих сердец
+        function createHeart() {
+            const h = document.createElement('div');
+            h.classList.add('heart-fly');
+            h.innerText = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = Math.random() * 2 + 3 + 's'; 
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
+
